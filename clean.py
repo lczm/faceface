@@ -92,7 +92,9 @@ def convertgray(source, end):
                 second_image = face_recognition.load_image_file(os.path.join(end_files[i], item))
                 second_faces = face_recognition.face_locations(second_image)
                 if len(second_faces) != 1:
-                    os.system('rm {}.png'.format(os.path.join(end_files[i], item)))
+                    # os.system('rm {}.png'.format(os.path.join(end_files[i], item)))
+                    print(os.path.join(end_files[i], item))
+                    os.system('rm {}'.format(os.path.join(end_files[i], item)))
                 
             else:
                 print("Image does not have 1 face")

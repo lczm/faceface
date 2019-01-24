@@ -3,9 +3,10 @@ __pycache__
 /lfw
 /test
 /testceleb
+/livetest
 /celeb
 /accuracytest
 
+log.csv
 tags*
-
 *.h5

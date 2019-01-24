@@ -13,7 +13,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
 
 # from keras.layers import Conv1D, Activation, MaxPool1D, Flatten, Dense, Dropout
-from keras.layers import Activation, Dense
+from keras.layers import Activation, Dense, Dropout
 from keras.models import Sequential
 from keras.utils import to_categorical
 
@@ -156,6 +156,11 @@ def load_data(directory):
     # x_train, x_test, y_train, y_test = train_test_split(clean_encoding, clean_label, test_size=0.2)
     x_train, x_test, y_train, y_test = train_test_split(clean_encoding, int_clean_label, test_size=0.2)
 
+    # print('x_train', len(x_train.shape))
+    # print('x_test', len(x_test.shape))
+    # print('y_train', len(y_train.shape))
+    # print('y_test', len(y_test.shape))
+
     # print out the shapes of the arrays if needed
     return (x_train, y_train), (x_test, y_test), total_labels
 
@@ -184,6 +189,8 @@ def generate_dense_mode():
 
     # starting layer
     model.add(Dense(128,activation='relu', input_shape=(128,)))
+
+    model.add(Dropout(0.5))
     model.add(Dense(128, activation='relu'))
     model.add(Dense(128, activation='relu'))
     model.add(Dense(128, activation='relu'))
@@ -204,7 +211,14 @@ def generate_dense_mode():
     model.summary()
     # model.fit(x_train, y_train, batch_size=2, epochs=30)
     # no batch size
-    model.fit(x_train, y_train, batch_size=15,epochs=100)
+    model.fit(x_train, y_train, batch_size=15,epochs=100, validation_data=(x_test, y_test))
+
+    # (eval_loss, eval_accuracy) = model.evaluate(
+    #     y_train , y_test, batch_size=15, verbose=1)
+
+    # print("[INFO] accuracy: {:.2f}%".format(eval_accuracy * 100))
+    # print("[INFO] Loss: {}".format(eval_loss))
+
     model.save('model.h5')
 
     # use np.argmax to inverse the prediction
