@@ -34,15 +34,15 @@ def extract_substring(dir_str):
     index_list = []
     for letter in dir_str:
         # windows
-        if letter == str('\\'):
+        # if letter == str('\\'):
         # linux
         # if letter == str('/'):
-            index_list.append(dir_str.index(letter))
+        #     index_list.append(dir_str.index(letter))
 
         # updated version
-        # for i in range(len(dir_str)):
-        #     if dir_str[i] == '/':
-        #             index_list.append(i)
+        for i in range(len(dir_str)):
+            if dir_str[i] == '/':
+                    index_list.append(i)
 
     filtered = dir_str[index_list[len(index_list)-1]:]
     # pop out the first letter
@@ -199,10 +199,12 @@ def generate_dense_mode():
 
     model.compile(optimizer='adam',
                   loss='categorical_crossentropy',
-                  metrics=['acc'])
+                  metrics=['accuracy'])
 
     model.summary()
-    model.fit(x_train, y_train, batch_size=2, epochs=150)
+    # model.fit(x_train, y_train, batch_size=2, epochs=30)
+    # no batch size
+    model.fit(x_train, y_train, batch_size=15,epochs=100)
     model.save('model.h5')
 
     # use np.argmax to inverse the prediction
