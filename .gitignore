@@ -1,7 +1,11 @@
 __pycache__
+
 /lfw
 /test
 /testceleb
 /celeb
+/accuracytest
 
 tags*
+
+*.h5
