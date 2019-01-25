@@ -211,13 +211,8 @@ def generate_dense_mode():
     model.summary()
     # model.fit(x_train, y_train, batch_size=2, epochs=30)
     # no batch size
-    model.fit(x_train, y_train, batch_size=15,epochs=100, validation_data=(x_test, y_test))
-
-    # (eval_loss, eval_accuracy) = model.evaluate(
-    #     y_train , y_test, batch_size=15, verbose=1)
-
-    # print("[INFO] accuracy: {:.2f}%".format(eval_accuracy * 100))
-    # print("[INFO] Loss: {}".format(eval_loss))
+    # model.fit(x_train, y_train, batch_size=15,epochs=100, validation_data=(x_test, y_test))
+    model.fit(x_train, y_train, batch_size=5,epochs=150, validation_data=(x_test, y_test))
 
     model.save('model.h5')
 

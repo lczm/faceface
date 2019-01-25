@@ -86,7 +86,8 @@ def convertgray(source, end):
                 # print out where its saving
                 print(os.path.join(end_files[i],  item))
                 # save them all as pngs
-                img.save(os.path.join(end_files[i], item), "PNG")
+                img.save(str(os.path.join(end_files[i], item)), "PNG")
+                # img.save(str(os.path.join(end_files[i], item)) + 'png')
 
                 # open up the image again
                 second_image = face_recognition.load_image_file(os.path.join(end_files[i], item))
