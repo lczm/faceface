@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>FaceFace</title>
+    <link rel="stylesheet" href="../static/login.css" />
+    <link rel="icon" href="media/favicon-eye.ico">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+			  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+			  crossorigin="anonymous"></script>
+		
+</head>
+<body>
+    <form action="index.html">
+        <div class="container">
+            <p><h1>FaceFace Login</h1></p>
+        </div>
+
+        <div class="container">
+
+            <form action="{{ url_for('signin') }}" method="post">
+            </form>
+
+            <form action="{{ url_for('signin') }}" method="post">
+                <!-- <label><b>Username</b></label> -->
+                <input type="text" placeholder="Enter Username" name="username">
+
+                <!-- <label><b>Password</b></label> -->
+                <input type="password" placeholder="Enter Password" name="userpassword">
+
+                <!-- checkbox -->
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+
+                <!-- <input type="submit" name="test" id="test" value="hello"> -->
+                <button type="submit" name="test" id="test" value="logintest">Login</button>
+            </form>
+
+
+        </div>
+    </form>
+
+</body>
+</html>
