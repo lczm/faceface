@@ -54,13 +54,13 @@ def signin():
         return render_template('error.html')
 
 @app.route("/")
+@app.route("/index")
 def index():
     # initialize table_details
     attendance_data = parser()
 
     # pprint(table_details)
     return render_template('index.html', attendance_data=parser())
-    # return "Hello World!"
 
 # use this routes for displaying images
 @app.route('/<image>')
