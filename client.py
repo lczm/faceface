@@ -56,7 +56,7 @@ def cv_window():
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             # same the file at static/livetest, as wel as /livetest
             date_string = './livetest/' + f'{datetime.now():%Y-%m-%d-%H:%M:%S%z}' + '.jpg'
-            static_date_string = './livetest/' + f'{datetime.now():%Y-%m-%d-%H:%M:%S%z}' + '.jpg'
+            static_date_string = './static/livetest/' + f'{datetime.now():%Y-%m-%d-%H:%M:%S%z}' + '.jpg'
             # write the file to disc
             cv2.imwrite(date_string, frame)
             cv2.imwrite(static_date_string, frame)
@@ -69,7 +69,7 @@ def cv_window():
             # However, as just a concept, the location can be hardcoded in
             # csvfile.write("{}, {}, {} \n".format(date_string, predict_value))
             csvfile = open('./log.csv', 'a')
-            csvfile.write("{}, {}, {}, #BLK31-05-01 \n".format(date_string, predict_value, datetime.now().strftime("%I:%M%p on %B %d, %Y")))
+            csvfile.write("{},{}, {}, P1, #BLK31-05-01 \n".format(date_string, predict_value, datetime.now().strftime("%I:%M%p on %B %d, %Y")))
             csvfile.close()
 
 
