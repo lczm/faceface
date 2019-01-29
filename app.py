@@ -73,6 +73,8 @@ def image(image):
 def user(username):
     userdata = []
 
+    userdata.append(str(username))
+
     # initialize table_details
     attendance_data = parser()
     # get the [1] index from every part of attendance_data
