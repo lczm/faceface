@@ -1,31 +1,152 @@
 ﻿<!DOCTYPE html>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <title>FaceFace</title>
-    <link rel="stylesheet" href="css/index.css" />
+    <!-- <link rel="stylesheet" href="css/index.css" /> -->
+    <link rel="stylesheet" href="../static/index.css" />
+    <!-- <script src="js/index.js"></script> -->
+    <script src="../static/index.js"></script>
     <link rel="icon" href="media/favicon-eye.ico">
-    <script src="js/index.js"></script>
+
+     <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script> 
+
 </head>
 <body onload="startTime()">
-    
-    <!--Header-->
-    <header>
-        <div class="container">
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Attendance</a></li>
-                    <li><a href="login.html">Back to login (will be removed)</a></li>
-                    <li><a href="login.html">Logout</a></li>
-                </ul>
-            </nav>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="width: 100%; height:10%;" >
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02"
+            aria-expanded="false"
+            aria-label="Toggle navigation" >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"
+                        >Home <span class="sr-only">(current)</span></a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+            </ul>
+
+            <!-- datetime -->
+            <div id="datetime" class="datetime"></div>
+
+            <form class="form-inline my-2 my-lg-0">
+                <input
+                    class="form-control mr-sm-2"
+                    type="search"
+                    placeholder="Search"
+                />
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    Search
+                </button>
+            </form>
         </div>
-    </header>
-    
-    <!--Date and Time Display-->
-    <div id="datetime" class="datetime"></div>        
+    </nav>
+
+
+    <div id="attendance">
+        <table class="table table-striped">
+
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Image</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for item in attendance_data%}
+                <tr>
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{item[1]}}</td>
+                    <td>{{item[2]}}</td>
+                    <td>{{item[3]}}</td>
+                    <td>{{item[4]}}</td>
+                    <td>
+                        <a href={{item[0]}} target="_blank">
+                            {{item[0]}}
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+            <!-- <tbody> -->
+            <!--     <tr> -->
+            <!--         <th scope="row">1</th> -->
+            <!--         <td>Mark</td> -->
+            <!--         <td>Otto</td> -->
+            <!--         <td> -->
+            <!--             <a href="2019-01-28-13:40:44.jpg" target="_blank">@mdo</a> -->
+            <!--         </td> -->
+            <!--     </tr> -->
+            <!--     <tr> -->
+            <!--         <th scope="row">2</th> -->
+            <!--         <td>Jacob</td> -->
+            <!--         <td>Thornton</td> -->
+            <!--         <td>@fat</td> -->
+            <!--     </tr> -->
+            <!--     <tr> -->
+            <!--         <th scope="row">3</th> -->
+            <!--         <td>Larry</td> -->
+            <!--         <td>the Bird</td> -->
+            <!--         <td>@twitter</td> -->
+            <!--     </tr> -->
+
+            <!--     <tr> -->
+            <!--         <th scope="row">1</th> -->
+            <!--         <td>Mark</td> -->
+            <!--         <td>Otto</td> -->
+            <!--         <td>@mdo</td> -->
+            <!--     </tr> -->
+            <!--     <tr> -->
+            <!--         <th scope="row">2</th> -->
+            <!--         <td>Jacob</td> -->
+            <!--         <td>Thornton</td> -->
+            <!--         <td>@fat</td> -->
+            <!--     </tr> -->
+            <!--     <tr> -->
+            <!--         <th scope="row">3</th> -->
+            <!--         <td>Larry</td> -->
+            <!--         <td>the Bird</td> -->
+            <!--         <td>@twitter</td> -->
+            <!--     </tr> -->
+            <!-- </tbody> -->
+
+        </table>
+    </div>
 
     </body>
 </html>

@@ -1,13 +1,20 @@
 from flask import Flask, render_template, redirect, request, sessions
 import auth.accounts as accounts
+import os
+from parser import parser
 
+from pprint import pprint
 
 # def init_server():
 # define the flask app
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = os.path.join('static', 'livetest')
 
 # this resources will be stored as the user uses the program throughout
 resources = []
+
+# initialize table_details
+attendance_data = parser()
 
 '''
 initialize the flask routes
@@ -49,21 +56,20 @@ def signin():
         print('getting here is bad')
         return render_template('error.html')
 
-@app.route("/test", methods=['POST', 'GET'])
-def test():
-    if request.method == 'POST':
-        print('this is a post')
-        print(request.form['test'])
-        return "test world"
-    else:
-        return "Test world"
-
 @app.route("/")
 def index():
-    return "Hello World!"
+    # pprint(table_details)
+    return render_template('index.html', attendance_data=parser())
+    # return "Hello World!"
 
+# use this routes for displaying images
+@app.route('/<image>')
+def profile(image):
+    path_to_image = os.path.join(app.config['UPLOAD_FOLDER'], image)
+    return render_template('image.html', user_image=path_to_image)
 
 
 if __name__ == "__main__":
     # initialize the flask server
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True)
+    # app.run(debug=True, host='0.0.0.0')

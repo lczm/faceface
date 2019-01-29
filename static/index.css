@@ -1,5 +1,5 @@
-﻿body
-{
+﻿body {
+    margin: 0;
     color: black;
 }
 
@@ -9,6 +9,7 @@
 }
 
 header {
+    min-width: 90%;
     background-color: #7b1fa2;
 }
 
@@ -31,8 +32,8 @@ nav ul{
 nav li{
     display: inline-block;
     margin-left: 70px;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    /* padding-top: 25px; */
+    /* padding-bottom: 25px; */
 }
 
 nav a{
@@ -54,8 +55,27 @@ nav li:hover{
 
 
 .datetime{
-    text-align: center;
-    font-family: Arial;
-    font-size: 80px;
-    padding: 20px 20px;
+    /* text-align: center; */
+    /* font-family: Arial; */
+    /* font-size: 80px; */
+    /* padding: 20px 20px; */
+    font-size: 1.25rem;
+    color: white;
+    padding-right: 20px;
+}
+
+/* #attendance { */
+/*     margin: 10%; */
+/* } */
+
+#attendance {
+    position: relative;
+    /* padding : 20%; */
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    /* margin-left: 5%; */
+    /* margin-right: 5%; */
+    /* margin-top: 5%; */
+    /* margin-bottom: 5%; */
 }

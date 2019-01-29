@@ -10,7 +10,6 @@ def touch(path):
     with open(path, 'a'):
         os.utime(path, None)
 
-
 def check_csv():
     '''
     makes sure the csv exists
@@ -45,28 +44,33 @@ def cv_window():
     else:
         rval = False
 
-    with open('./log.csv', 'w') as csvfile:
-        while rval:
-            cv2.imshow("preview", frame)
-            rval, frame = vc.read()
-            key = cv2.waitKey(20)
-            if key == 27: # exit on ESC
-                break
-            if key == ord(' '):
-                # save the frame as grayscale
-                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-                date_string = './livetest/' + f'{datetime.now():%Y-%m-%d-%H:%M:%S%z}' + '.jpg'
-                # write the file to disc
-                cv2.imwrite(date_string, frame)
-                # predict
-                predict_value = predict.import_predict_gray(model, date_string)
+    # with open('./log.csv', 'a') as csvfile:
+    while rval:
+        cv2.imshow("preview", frame)
+        rval, frame = vc.read()
+        key = cv2.waitKey(20)
+        if key == 27: # exit on ESC
+            break
+        if key == ord(' '):
+            # save the frame as grayscale
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+            # same the file at static/livetest, as wel as /livetest
+            date_string = './livetest/' + f'{datetime.now():%Y-%m-%d-%H:%M:%S%z}' + '.jpg'
+            static_date_string = './livetest/' + f'{datetime.now():%Y-%m-%d-%H:%M:%S%z}' + '.jpg'
+            # write the file to disc
+            cv2.imwrite(date_string, frame)
+            cv2.imwrite(static_date_string, frame)
+            # predict
+            predict_value = predict.import_predict_gray(model, date_string)
 
-                print('predict_value', predict_value)
+            print('predict_value', predict_value)
 
-                # Here, the location can also be decided.
-                # However, as just a concept, the location can be hardcoded in
-                # csvfile.write("{}, {}, {} \n".format(date_string, predict_value))
-                csvfile.write("{}, {}, #BLK31-05-01 \n".format(date_string, predict_value))
+            # Here, the location can also be decided.
+            # However, as just a concept, the location can be hardcoded in
+            # csvfile.write("{}, {}, {} \n".format(date_string, predict_value))
+            csvfile = open('./log.csv', 'a')
+            csvfile.write("{}, {}, {}, #BLK31-05-01 \n".format(date_string, predict_value, datetime.now().strftime("%I:%M%p on %B %d, %Y")))
+            csvfile.close()
 
 
     cv2.destroyWindow("faceface")
